@@ -1,5 +1,6 @@
-package com.hannah.education.project.teacher
+package com.hannah.education.project.member
 
+import com.hannah.education.project.util.Auth
 import com.hannah.education.project.util.BaseTimeEntity
 import com.hannah.education.project.util.Gender
 import java.time.LocalDate
@@ -11,8 +12,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Teacher (
-
+class Member (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var id: Long? = null,
 
@@ -25,6 +25,9 @@ class Teacher (
 
     private var phoneNumber: String?,
 
-    private var email: String?
+    private var email: String?,
+
+    @Enumerated(EnumType.STRING)
+    private var auth: Auth?
 
 ) : BaseTimeEntity()
