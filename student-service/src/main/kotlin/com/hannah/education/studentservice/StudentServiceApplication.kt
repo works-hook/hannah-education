@@ -19,7 +19,6 @@ class PingController {
 
     @GetMapping("/student-ping")
     fun ping(): String {
-        println("ping - student service")
         return "ping - student service"
     }
 
