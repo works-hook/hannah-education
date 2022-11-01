@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
 }
 
 group = "com.hannah.education"
@@ -41,6 +42,11 @@ dependencies {
 
     // msa
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+    // querydsl
+    implementation("com.querydsl:querydsl-jpa:5.0.0")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 dependencyManagement {
@@ -58,4 +64,9 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+// querydsl
+sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+    kotlin.srcDir("$buildDir/generated/source/kapt/main")
 }

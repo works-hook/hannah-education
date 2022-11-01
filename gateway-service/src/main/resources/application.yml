@@ -24,3 +24,7 @@ spring:
           uri: lb://TEACHER-SERVICE
           predicates:
             - Path=/teacher**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user**
