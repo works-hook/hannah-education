@@ -11,6 +11,7 @@ data class UserCreateRequest(
 ) {
     fun toEntity(): User {
         return User(
+            id = null,
             account = this.account,
             password = this.password,
             name = this.name,

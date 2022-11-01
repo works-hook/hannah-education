@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 @Document
 class User(
     @Id
-    private var id: String = "",
-
+    private var id: String?,
     private val account: String,
     private val password: String,
     private val name: String,
@@ -17,7 +16,8 @@ class User(
     private val phoneNumber: String,
     private val imageUrl: String = "",
 ) {
-    fun toDto(): UserCreateResponse {
+
+    fun toCreateResponseDto(): UserCreateResponse {
         return UserCreateResponse(
             id = this.id,
             account = this.account,

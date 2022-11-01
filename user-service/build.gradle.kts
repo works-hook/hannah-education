@@ -49,6 +49,10 @@ dependencies {
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
 
+allOpen {
+    annotation("javax.persistence.Entity")
+}
+
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")

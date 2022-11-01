@@ -1,5 +1,5 @@
 ### create user
-POST http://localhost:8080/users/
+POST http://localhost:8080/users
 Content-Type: application/json
 
 {
@@ -11,4 +11,4 @@ Content-Type: application/json
 }
 
 ### find all users
-GET http://localhost:8080/users/
+GET http://localhost:8080/users
