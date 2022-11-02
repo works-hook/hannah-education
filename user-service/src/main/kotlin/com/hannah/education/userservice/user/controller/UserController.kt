@@ -1,10 +1,12 @@
 package com.hannah.education.userservice.user.controller
 
-import com.hannah.education.userservice.user.domain.User
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
 import com.hannah.education.userservice.user.service.UserService
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class UserController(
@@ -20,5 +22,7 @@ class UserController(
     fun findAllUser(): List<UserCreateResponse> {
         return userService.findAll()
     }
+
+    // @GetMapping("/users/login")
 
 }
