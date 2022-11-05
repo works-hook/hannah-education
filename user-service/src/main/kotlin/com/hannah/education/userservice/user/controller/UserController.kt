@@ -1,6 +1,7 @@
 package com.hannah.education.userservice.user.controller
 
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
+import com.hannah.education.userservice.user.dto.request.UserLoginRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
 import com.hannah.education.userservice.user.service.UserService
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,6 +24,9 @@ class UserController(
         return userService.findAll()
     }
 
-    // @GetMapping("/users/login")
+    @GetMapping("/users/login")
+    fun loginUser(@RequestBody request: UserLoginRequest) {
+        // userService.loginUser()
+    }
 
 }

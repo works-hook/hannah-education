@@ -1,14 +1,18 @@
 package com.hannah.education.userservice.user.domain
 
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
+import com.querydsl.core.annotations.QueryEntity
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.security.crypto.password.PasswordEncoder
+import javax.persistence.Entity
 
+@Entity
+@QueryEntity
 @Document
 class User(
     @Id
-    private var id: String?,
+    private var id: String? = null,
     private val account: String,
     private var password: String,
     private val name: String,
@@ -31,6 +35,10 @@ class User(
 
     fun encodingPassword(passwordEncoder: PasswordEncoder) {
         this.password = passwordEncoder.encode(this.password)
+    }
+
+    fun checkPassword(password: String) {
+        this.pa
     }
 
 }
