@@ -1,6 +1,6 @@
 package com.hannah.education.userservice.user.domain
 
-import com.hannah.education.userservice.user.dto.response.UserCreateResponse
+import com.hannah.education.userservice.user.dto.request.UserModifyRequest
 import com.querydsl.core.annotations.QueryEntity
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -12,33 +12,31 @@ import javax.persistence.Entity
 @Document
 class User(
     @Id
-    private var id: String? = null,
-    private val account: String,
-    private var password: String,
-    private val name: String,
-    private val brith: String = "",
-    private val email: String,
-    private val phoneNumber: String,
-    private val imageUrl: String = "",
-    private val type: Type,
+    var id: String? = null,
+    val account: String,
+    var password: String,
+    var name: String,
+    var brith: String = "",
+    var email: String,
+    var phoneNumber: String,
+    var imageUrl: String = "",
+    val type: Type,
 ) {
-
-    fun toCreateResponseDto(): UserCreateResponse {
-        return UserCreateResponse(
-            id = this.id,
-            account = this.account,
-            name = this.name,
-            email = this.email,
-            phoneNumber = this.phoneNumber
-        )
-    }
 
     fun encodingPassword(passwordEncoder: PasswordEncoder) {
         this.password = passwordEncoder.encode(this.password)
     }
 
-    fun checkPassword(password: String) {
-        this.pa
+    fun checkPassword(password: String): Boolean {
+        return this.password == password
+    }
+
+    fun update(request: UserModifyRequest) {
+        request.name?.let { this.name = it }
+        request.brith?.let { this.brith = it}
+        request.email?.let { this.email = it }
+        request.phoneNumber?.let { this.phoneNumber = it }
+        request.imageUrl?.let { this.imageUrl = it }
     }
 
 }

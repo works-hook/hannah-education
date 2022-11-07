@@ -3,9 +3,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("kapt") version "1.6.21"
+
+    val kotlinVersion = "1.6.21"
+
+    kotlin("jvm") version kotlinVersion
+    kotlin("kapt") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    kotlin("plugin.allopen") version kotlinVersion
 }
 
 group = "com.hannah.education"
@@ -34,7 +39,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.scottescue:dropwizard-entitymanager:1.0.0-1")
+    implementation("org.hibernate:hibernate-entitymanager")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
@@ -46,7 +51,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
     // querydsl
-    implementation("com.querydsl:querydsl-jpa:5.0.0")
+    implementation("com.querydsl:querydsl-mongodb:5.0.0")
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
@@ -78,6 +83,6 @@ tasks.withType<Test> {
 }
 
 // querydsl
-sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
-    kotlin.srcDir("$buildDir/generated/source/kapt/main")
-}
+//sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+//    kotlin.srcDir("$buildDir/generated/source/kapt/main")
+//}
