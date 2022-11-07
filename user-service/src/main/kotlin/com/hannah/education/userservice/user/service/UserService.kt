@@ -4,6 +4,8 @@ import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
 import com.hannah.education.userservice.user.repository.UserRepository
+import com.hannah.education.userservice.util.error.BusinessException
+import com.hannah.education.userservice.util.error.ErrorCode
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -28,7 +30,9 @@ class UserService(
 
     fun loginUser(request: UserLoginRequest) {
         val user = (userRepository.findByAccount(request.account)
-            ?: throw RuntimeException("존재하지 않은 회원입니다."))
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER))
+
+
 
     }
 }

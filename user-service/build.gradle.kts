@@ -34,6 +34,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("com.scottescue:dropwizard-entitymanager:1.0.0-1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
@@ -52,6 +53,11 @@ dependencies {
 
 allOpen {
     annotation("javax.persistence.Entity")
+    annotation("javax.persistence.Embeddable")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.EntityListeners")
+    annotation("org.springframework.data.annotation.CreatedDate")
+    annotation("org.springframework.data.jpa.domain.support.AuditingEntityListener")
 }
 
 dependencyManagement {
