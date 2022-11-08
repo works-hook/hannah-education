@@ -3,7 +3,7 @@ package com.hannah.education.userservice.user.dto.response
 import com.hannah.education.userservice.user.domain.User
 
 data class UserCreateResponse(
-    val id: String?,
+    val id: Long?,
     val account: String,
     val name: String,
     val email: String,

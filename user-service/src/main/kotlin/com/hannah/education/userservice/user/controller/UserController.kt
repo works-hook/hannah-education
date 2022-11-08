@@ -35,7 +35,7 @@ class UserController(
     }
 
     @PatchMapping("/users/{id}")
-    fun modifyUser(@PathVariable id: String, @RequestBody request: UserModifyRequest): Success<UserModifyResponse> {
+    fun modifyUser(@PathVariable id: Long, @RequestBody request: UserModifyRequest): Success<UserModifyResponse> {
         val result = userService.modifyUser(id, request)
         return Success(result, "회원 수정이 완료되었습니다.")
     }

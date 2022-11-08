@@ -36,7 +36,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // spring
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.hibernate:hibernate-entitymanager")
@@ -50,8 +50,12 @@ dependencies {
     // msa
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
+    // database
+    runtimeOnly("com.h2database:h2") // test
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client") // develop
+
     // querydsl
-    implementation("com.querydsl:querydsl-mongodb:5.0.0")
+    implementation("com.querydsl:querydsl-jpa:5.0.0")
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 }
@@ -59,8 +63,8 @@ dependencies {
 allOpen {
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.Embeddable")
-    annotation("javax.persistence.MappedSuperclass")
     annotation("javax.persistence.EntityListeners")
+    annotation("javax.persistence.MappedSuperclass")
     annotation("org.springframework.data.annotation.CreatedDate")
     annotation("org.springframework.data.jpa.domain.support.AuditingEntityListener")
 }

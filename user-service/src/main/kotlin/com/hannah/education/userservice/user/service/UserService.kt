@@ -9,7 +9,6 @@ import com.hannah.education.userservice.user.dto.response.UserCreateResponse
 import com.hannah.education.userservice.user.dto.response.UserModifyResponse
 import com.hannah.education.userservice.user.dto.response.toCreateResponseDto
 import com.hannah.education.userservice.user.dto.response.toUserModifyResponse
-import com.hannah.education.userservice.user.repository.UserDataRepository
 import com.hannah.education.userservice.user.repository.UserRepository
 import com.hannah.education.userservice.util.error.BusinessException
 import com.hannah.education.userservice.util.error.ErrorCode
@@ -21,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserService(
     private val userRepository: UserRepository,
-    private val userDataRepository: UserDataRepository,
     private val passwordEncoder: PasswordEncoder,
 ) {
 
@@ -29,7 +27,7 @@ class UserService(
     fun createUser(request: UserCreateRequest): UserCreateResponse {
         val userEntity = request.toEntity()
         userEntity.encodingPassword(passwordEncoder)
-        return userDataRepository.save(userEntity).toCreateResponseDto()
+        return userRepository.save(userEntity).toCreateResponseDto()
     }
 
     @Transactional
@@ -40,15 +38,15 @@ class UserService(
     }
 
     @Transactional
-    fun modifyUser(id: String, request: UserModifyRequest): UserModifyResponse {
-        val findUser = userDataRepository.findByIdOrNull(id)
+    fun modifyUser(id: Long, request: UserModifyRequest): UserModifyResponse {
+        val findUser = userRepository.findUserById(id)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
         findUser.update(request)
         return findUser.toUserModifyResponse()
     }
 
     fun findAll(): List<UserCreateResponse> {
-        return userDataRepository.findAll().map { user -> user.toCreateResponseDto() }
+        return userRepository.findAll().map { user -> user.toCreateResponseDto() }
     }
 
     fun loginUser(request: UserLoginRequest) {
