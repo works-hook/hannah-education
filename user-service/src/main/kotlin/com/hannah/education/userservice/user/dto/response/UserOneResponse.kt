@@ -3,7 +3,8 @@ package com.hannah.education.userservice.user.dto.response
 import com.hannah.education.userservice.user.domain.User
 import java.time.LocalDate
 
-data class UserModifyResponse(
+data class UserOneResponse(
+    val id: Long?,
     val account: String,
     val name: String,
     val brith: LocalDate?,
@@ -12,7 +13,8 @@ data class UserModifyResponse(
     val imageUrl: String,
 )
 
-fun User.toUserModifyResponse() : UserModifyResponse = UserModifyResponse(
+fun User.toUserOneResponse() : UserOneResponse = UserOneResponse(
+    id = this.id,
     account = this.account,
     name = this.name,
     brith = this.brith,

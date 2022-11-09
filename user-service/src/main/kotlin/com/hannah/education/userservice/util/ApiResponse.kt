@@ -1,10 +1,17 @@
 package com.hannah.education.userservice.util
 
+import com.hannah.education.userservice.util.code.ErrorCode
+import com.hannah.education.userservice.util.code.SuccessCode
+
 sealed class ApiResponse<T>(
     val data: T? = null,
+    val code: String? = null,
     val message: String? = null
 ) {
-    class Success<T>(data: T, message: String) : ApiResponse<T>(data, message)
-    class Error<T>(data: T, errorMessage: String?) : ApiResponse<T>(data, message = errorMessage)
-    class Ok<T>(data: T) : ApiResponse<T>(data, "OK")
+
+    class Success<T>(data: T?, success: SuccessCode) : ApiResponse<T>(data = data, code = success.code, message = success.message) {
+        constructor(success: SuccessCode) : this(null, success)
+    }
+
+    class Error<T>(error: ErrorCode) : ApiResponse<T>(code = error.code, message = error.message)
 }

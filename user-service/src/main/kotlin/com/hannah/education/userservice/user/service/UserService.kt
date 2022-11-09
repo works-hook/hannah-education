@@ -1,18 +1,13 @@
 package com.hannah.education.userservice.user.service
 
-import com.hannah.education.userservice.user.domain.User
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
 import com.hannah.education.userservice.user.dto.request.UserModifyRequest
-import com.hannah.education.userservice.user.dto.response.UserCreateResponse
-import com.hannah.education.userservice.user.dto.response.UserModifyResponse
-import com.hannah.education.userservice.user.dto.response.toCreateResponseDto
-import com.hannah.education.userservice.user.dto.response.toUserModifyResponse
+import com.hannah.education.userservice.user.dto.response.*
 import com.hannah.education.userservice.user.repository.UserRepository
-import com.hannah.education.userservice.util.error.BusinessException
-import com.hannah.education.userservice.util.error.ErrorCode
-import org.springframework.data.repository.findByIdOrNull
+import com.hannah.education.userservice.util.exception.BusinessException
+import com.hannah.education.userservice.util.code.ErrorCode
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -31,10 +26,9 @@ class UserService(
     }
 
     @Transactional
-    fun accountDuplicateCheck(request: UserDuplicateRequest): User {
-        return userRepository.findByAccount(request.account)
-            ?: "Ok"
-            .let { throw BusinessException(ErrorCode.EXIST_ACCOUNT) }
+    fun accountDuplicateCheck(request: UserDuplicateRequest) {
+        userRepository.findByAccount(request.account)
+            ?.let { throw BusinessException(ErrorCode.EXIST_ACCOUNT) }
     }
 
     @Transactional
@@ -45,14 +39,28 @@ class UserService(
         return findUser.toUserModifyResponse()
     }
 
-    fun findAll(): List<UserCreateResponse> {
-        return userRepository.findAll().map { user -> user.toCreateResponseDto() }
+    @Transactional
+    fun deleteUser(id: Long) {
+        val findUser = (userRepository.findUserById(id)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER))
+        findUser.delete()
+    }
+
+    fun findOne(id: Long): UserOneResponse {
+        val user = (userRepository.findUserById(id)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER))
+        return user.toUserOneResponse()
+    }
+
+    fun findAll(): List<UserOneResponse> {
+        return userRepository.findUserAll()
+            .map { user -> user.toUserOneResponse() }
     }
 
     fun loginUser(request: UserLoginRequest) {
         val user = (userRepository.findByAccount(request.account)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER))
-        val checkPassword = user.checkPassword(passwordEncoder.encode(request.password))
-        if (!checkPassword) throw BusinessException(ErrorCode.INVALID_TOKEN_ERROR)
+        val checkPassword = passwordEncoder.matches(request.password, user.password)
+        if (!checkPassword) throw BusinessException(ErrorCode.NOT_MATCH_MEMBER)
     }
 }

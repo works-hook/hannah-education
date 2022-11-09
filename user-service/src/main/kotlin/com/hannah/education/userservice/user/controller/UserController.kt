@@ -1,21 +1,16 @@
 package com.hannah.education.userservice.user.controller
 
-import com.hannah.education.userservice.user.domain.User
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
 import com.hannah.education.userservice.user.dto.request.UserModifyRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
 import com.hannah.education.userservice.user.dto.response.UserModifyResponse
+import com.hannah.education.userservice.user.dto.response.UserOneResponse
 import com.hannah.education.userservice.user.service.UserService
-import com.hannah.education.userservice.util.ApiResponse.Ok
 import com.hannah.education.userservice.util.ApiResponse.Success
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import com.hannah.education.userservice.util.code.SuccessCode
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class UserController(
@@ -25,31 +20,43 @@ class UserController(
     @PostMapping("/users")
     fun createUser(@RequestBody request: UserCreateRequest): Success<UserCreateResponse> {
         val result = userService.createUser(request)
-        return Success(result, "회원 가입이 완료되었습니다.")
+        return Success(result, SuccessCode.USER_REGISTER)
     }
 
     @PostMapping("/users/account")
-    fun accountDuplicateCheck(@RequestBody request: UserDuplicateRequest): Success<User> {
-        val result = userService.accountDuplicateCheck(request)
-        return Success(result, "사용 가능한 아이디입니다.")
+    fun accountDuplicateCheck(@RequestBody request: UserDuplicateRequest): Success<String> {
+        userService.accountDuplicateCheck(request)
+        return Success(SuccessCode.NOT_DUPLICATE_ACCOUNT)
     }
 
     @PatchMapping("/users/{id}")
     fun modifyUser(@PathVariable id: Long, @RequestBody request: UserModifyRequest): Success<UserModifyResponse> {
         val result = userService.modifyUser(id, request)
-        return Success(result, "회원 수정이 완료되었습니다.")
+        return Success(result, SuccessCode.USER_MODIFY)
+    }
+
+    @DeleteMapping("/users/{id}")
+    fun deleteUser(@PathVariable id: Long): Success<String> {
+        userService.deleteUser(id)
+        return Success(SuccessCode.SECESSION)
+    }
+
+    @GetMapping("/users/{id}")
+    fun findOneUser(@PathVariable id: Long): Success<UserOneResponse> {
+        val result = userService.findOne(id)
+        return Success(result, SuccessCode.USER_LIST)
     }
 
     @GetMapping("/users")
-    fun findAllUser(): Success<List<UserCreateResponse>> {
+    fun findAllUser(): Success<List<UserOneResponse>> {
         val result = userService.findAll()
-        return Success(result, "회원 리스트 입니다.")
+        return Success(result, SuccessCode.USER_LIST)
     }
 
     @PostMapping("/users/login")
-    fun loginUser(@RequestBody request: UserLoginRequest): Ok<String> {
+    fun loginUser(@RequestBody request: UserLoginRequest): Success<String> {
         userService.loginUser(request)
-        return Ok("로그인이 완료되었습니다.")
+        return Success(SuccessCode.LOGIN)
     }
 
 }

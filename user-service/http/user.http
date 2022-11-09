@@ -20,11 +20,12 @@ Content-Type: application/json
 }
 
 ### modify user
-PATCH http://localhost:8080/users/636878784758de5dad45abef
+PATCH http://localhost:8080/users/1
 Content-Type: application/json
 
 {
-  "name": "modifyHannahName"
+  "name": "modifyHannahName",
+  "brith": "2003-03-29"
 }
 
 ### find all users
