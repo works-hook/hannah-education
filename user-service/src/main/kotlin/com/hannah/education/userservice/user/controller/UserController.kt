@@ -44,7 +44,7 @@ class UserController(
     @GetMapping("/users/{id}")
     fun findOneUser(@PathVariable id: Long): Success<UserOneResponse> {
         val result = userService.findOne(id)
-        return Success(result, SuccessCode.USER_LIST)
+        return Success(result, SuccessCode.USER_ONE)
     }
 
     @GetMapping("/users")
