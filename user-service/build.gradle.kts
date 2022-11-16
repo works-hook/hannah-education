@@ -10,7 +10,6 @@ plugins {
     kotlin("kapt") version kotlinVersion
     kotlin("plugin.spring") version kotlinVersion
     kotlin("plugin.jpa") version kotlinVersion
-    kotlin("plugin.allopen") version kotlinVersion
 }
 
 group = "com.hannah.education"
@@ -53,22 +52,12 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
     // database
-    runtimeOnly("com.h2database:h2") // test
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client") // develop
 
     // querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0")
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
-}
-
-allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.Embeddable")
-    annotation("javax.persistence.EntityListeners")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("org.springframework.data.annotation.CreatedDate")
-    annotation("org.springframework.data.jpa.domain.support.AuditingEntityListener")
 }
 
 dependencyManagement {

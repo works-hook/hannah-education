@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass
 
 @EntityListeners(AuditingEntityListener::class)
 @MappedSuperclass
-class BaseEntity(
+open class BaseEntity(
     @CreatedDate
     @Column(updatable = false)
     var createdDate: LocalDateTime = LocalDateTime.now(),
