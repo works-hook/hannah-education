@@ -28,6 +28,10 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user**,/user**/{segment}
+        - id: lecture-service
+          uri: lb://LECTURE-SERVICE
+          predicates:
+            - Path=/lecture**,/lecture**/{segment}
         - id: api-management-service
           uri: lb://USER-SERVICE
           predicates:
