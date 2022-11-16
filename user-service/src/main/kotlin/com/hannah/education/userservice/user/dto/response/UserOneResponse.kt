@@ -10,7 +10,7 @@ data class UserOneResponse(
     val brith: LocalDate?,
     val email: String,
     val phoneNumber: String,
-    val imageUrl: String,
+    val imageUrl: String?,
 )
 
 fun User.toUserOneResponse() : UserOneResponse = UserOneResponse(

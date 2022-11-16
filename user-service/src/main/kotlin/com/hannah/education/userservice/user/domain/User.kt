@@ -19,7 +19,7 @@ class User(
     var brith: LocalDate? = null,
     var email: String,
     var phoneNumber: String,
-    var imageUrl: String = "",
+    var imageUrl: String? = null,
     val type: Type,
 ): BaseEntity() {
 

@@ -45,6 +45,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
 
     // test
+    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     // msa

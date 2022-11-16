@@ -1,7 +1,5 @@
 package com.hannah.education.userservice.util.code
 
-import org.springframework.http.HttpStatus
-
 enum class ErrorCode(
     val code: String,
     val message: String
