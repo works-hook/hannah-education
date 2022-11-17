@@ -30,6 +30,10 @@ class User(
         this.password = passwordEncoder.encode(this.password)
     }
 
+    fun updatePassword(updatePassword: String) {
+        this.password = updatePassword
+    }
+
     fun studentUpdate(request: StudentModifyRequest) {
         request.name.let { this.name = it }
         request.email.let { this.email = it }

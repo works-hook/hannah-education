@@ -3,8 +3,8 @@ package com.hannah.education.userservice.user.controller
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
+import com.hannah.education.userservice.user.dto.request.UserUpdatePasswordRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
-import com.hannah.education.userservice.user.dto.response.StudentOneResponse
 import com.hannah.education.userservice.user.service.UserService
 import com.hannah.education.userservice.util.ApiResponse.Success
 import com.hannah.education.userservice.util.code.SuccessCode
@@ -33,16 +33,15 @@ class UserController(
         return Success(SuccessCode.SECESSION)
     }
 
-    @GetMapping("/users")
-    fun findAllUser(): Success<List<StudentOneResponse>> {
-        val result = userService.findAll()
-        return Success(result, SuccessCode.USER_LIST)
-    }
-
     @PostMapping("/users/login")
     fun loginUser(@RequestBody request: UserLoginRequest): Success<String> {
         userService.loginUser(request)
         return Success(SuccessCode.LOGIN)
+    }
+
+    @PostMapping("/users/{id}")
+    fun updatePassword(@PathVariable id: Long, @RequestBody request: UserUpdatePasswordRequest) {
+        userService.updatePassword(id, request)
     }
 
 }
