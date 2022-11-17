@@ -1,5 +1,7 @@
 package com.hannah.education.userservice.user.service
 
+import com.hannah.education.userservice.student.dto.response.UserModifyResponse
+import com.hannah.education.userservice.student.dto.response.toStudentModifyResponse
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
@@ -35,8 +37,8 @@ class UserService(
     fun modifyUser(id: Long, request: UserModifyRequest): UserModifyResponse {
         val findUser = userRepository.findUserById(id)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
-        findUser.update(request)
-        return findUser.toUserModifyResponse()
+        // findUser.update(request)
+        return findUser.toStudentModifyResponse()
     }
 
     @Transactional
@@ -46,15 +48,15 @@ class UserService(
         findUser.delete()
     }
 
-    fun findOne(id: Long): UserOneResponse {
+    fun findOne(id: Long): StudentOneResponse {
         val user = (userRepository.findUserById(id)
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER))
-        return user.toUserOneResponse()
+        return user.toStudentOneResponse()
     }
 
-    fun findAll(): List<UserOneResponse> {
+    fun findAll(): List<StudentOneResponse> {
         return userRepository.findUserAll()
-            .map { user -> user.toUserOneResponse() }
+            .map { user -> user.toStudentOneResponse() }
     }
 
     fun loginUser(request: UserLoginRequest) {

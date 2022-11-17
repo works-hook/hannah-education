@@ -1,9 +1,9 @@
-package com.hannah.education.userservice.user.dto.response
+package com.hannah.education.userservice.teacher.dto.response
 
 import com.hannah.education.userservice.user.domain.User
 import java.time.LocalDate
 
-data class UserModifyResponse(
+data class TeacherModifyResponse(
     val account: String,
     val name: String,
     val brith: LocalDate?,
@@ -12,7 +12,7 @@ data class UserModifyResponse(
     val imageUrl: String?,
 )
 
-fun User.toUserModifyResponse() : UserModifyResponse = UserModifyResponse(
+fun User.toTeacherModifyResponse() : TeacherModifyResponse = TeacherModifyResponse(
     account = this.account,
     name = this.name,
     brith = this.brith,
