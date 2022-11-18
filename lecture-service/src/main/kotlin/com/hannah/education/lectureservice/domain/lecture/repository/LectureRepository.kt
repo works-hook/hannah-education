@@ -1,6 +1,6 @@
-package com.hannah.education.lectureservice.lecture.repository
+package com.hannah.education.lectureservice.domain.lecture.repository
 
-import com.hannah.education.lectureservice.lecture.domain.Lecture
+import com.hannah.education.lectureservice.domain.lecture.Lecture
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 

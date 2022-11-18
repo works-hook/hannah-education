@@ -1,4 +1,4 @@
-package com.hannah.education.lectureservice.lecture.domain
+package com.hannah.education.lectureservice.domain.tag
 
 import com.hannah.education.lectureservice.util.domain.BaseEntity
 import javax.persistence.Entity
@@ -10,4 +10,6 @@ import javax.persistence.Id
 class Tag(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
+    val name: String,
+    val color: String,
 ): BaseEntity()

@@ -1,18 +1,17 @@
-package com.hannah.education.lectureservice.lecture.domain
+package com.hannah.education.lectureservice.domain.lectureLike
 
+import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.user.domain.User
 import com.hannah.education.lectureservice.util.domain.BaseEntity
-import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
-class Lecture(
+class LectureLike(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val title: String,
-    val introduce: String,
-    val startDate: LocalDate,
-    val endDate: LocalDate,
-    @ManyToOne
+
+    @ManyToOne val lecture: Lecture,
+
+    @OneToOne
     val user: User,
 ): BaseEntity()
