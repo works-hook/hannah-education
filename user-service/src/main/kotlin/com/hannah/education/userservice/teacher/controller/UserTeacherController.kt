@@ -9,11 +9,12 @@ import com.hannah.education.userservice.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*
 
 @RestController
+@RequestMapping("/users-teacher")
 class UserTeacherController(
     private val userTeacherService: UserTeacherService,
 ) {
 
-    @PatchMapping("/users-teacher/{id}")
+    @PatchMapping("/{id}")
     fun modifyTeacher(
         @PathVariable id: Long,
         @RequestBody request: TeacherModifyRequest,
@@ -22,7 +23,7 @@ class UserTeacherController(
         return Success(result, SuccessCode.USER_MODIFY)
     }
 
-    @GetMapping("/users-teacher/{id}")
+    @GetMapping("/{id}")
     fun findOneTeacher(@PathVariable id: Long): Success<TeacherOneResponse> {
         val result = userTeacherService.findOneTeacher(id)
         return Success(result, SuccessCode.USER_ONE)

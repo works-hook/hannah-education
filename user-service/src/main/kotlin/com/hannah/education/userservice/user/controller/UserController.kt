@@ -11,17 +11,18 @@ import com.hannah.education.userservice.util.code.SuccessCode
 import org.springframework.web.bind.annotation.*
 
 @RestController
+@RequestMapping("/users")
 class UserController(
     private val userService: UserService
 ) {
 
-    @PostMapping("/users")
+    @PostMapping("")
     fun createUser(@RequestBody request: UserCreateRequest): Success<UserCreateResponse> {
         val result = userService.createUser(request)
         return Success(result, SuccessCode.USER_REGISTER)
     }
 
-    @PostMapping("/users/account")
+    @PostMapping("/account")
     fun accountDuplicateCheck(@RequestBody request: UserDuplicateRequest): Success<String> {
         userService.accountDuplicateCheck(request)
         return Success(SuccessCode.NOT_DUPLICATE_ACCOUNT)
@@ -33,13 +34,13 @@ class UserController(
         return Success(SuccessCode.SECESSION)
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     fun loginUser(@RequestBody request: UserLoginRequest): Success<String> {
         userService.loginUser(request)
         return Success(SuccessCode.LOGIN)
     }
 
-    @PostMapping("/users/{id}")
+    @PostMapping("/{id}")
     fun updatePassword(@PathVariable id: Long, @RequestBody request: UserUpdatePasswordRequest) {
         userService.updatePassword(id, request)
     }
