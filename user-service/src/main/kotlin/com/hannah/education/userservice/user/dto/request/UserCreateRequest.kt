@@ -1,6 +1,6 @@
 package com.hannah.education.userservice.user.dto.request
 
-import com.hannah.education.userservice.user.domain.Type
+import com.hannah.education.userservice.user.domain.UserType
 import com.hannah.education.userservice.user.domain.User
 
 data class UserCreateRequest(
@@ -9,7 +9,7 @@ data class UserCreateRequest(
     val name: String,
     val email: String,
     val phoneNumber: String,
-    val type: Type,
+    val userType: UserType,
 ) {
     fun toEntity(): User {
         return User(
@@ -18,7 +18,7 @@ data class UserCreateRequest(
             name = this.name,
             email = this.email,
             phoneNumber = this.phoneNumber,
-            type = this.type,
+            userType = this.userType,
         )
     }
 

@@ -5,10 +5,7 @@ import com.hannah.education.userservice.teacher.dto.request.TeacherModifyRequest
 import com.hannah.education.userservice.util.domain.BaseEntity
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDate
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class User(
@@ -23,7 +20,8 @@ class User(
     var introduction: String? = null,
     var brith: LocalDate? = null,
     var imageUrl: String? = null,
-    val type: Type,
+    @Enumerated(value = EnumType.STRING)
+    val userType: UserType,
 ): BaseEntity() {
 
     fun encodingPassword(passwordEncoder: PasswordEncoder) {

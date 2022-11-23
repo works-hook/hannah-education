@@ -1,6 +1,6 @@
 package com.hannah.education.userservice.user.service
 
-import com.hannah.education.userservice.user.domain.Type
+import com.hannah.education.userservice.user.domain.UserType
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
@@ -90,7 +90,7 @@ class UserServiceTests : BehaviorSpec({
             name = "name",
             email = "email@email.com",
             phoneNumber = "01012341234",
-            type = Type.STUDENT
+            userType = UserType.STUDENT
         )
 
         val createResponse = UserCreateResponse(
