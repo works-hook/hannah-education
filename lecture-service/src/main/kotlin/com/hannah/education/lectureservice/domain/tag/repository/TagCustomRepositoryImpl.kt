@@ -1,6 +1,6 @@
 package com.hannah.education.lectureservice.domain.tag.repository
 
-import com.hannah.education.lectureservice.tag.domain.QTag.tag
+import com.hannah.education.lectureservice.domain.tag.QTag.tag
 import com.hannah.education.lectureservice.domain.tag.Tag
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory

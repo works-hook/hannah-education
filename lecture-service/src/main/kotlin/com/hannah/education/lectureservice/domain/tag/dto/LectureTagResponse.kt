@@ -1,4 +1,4 @@
-package com.hannah.education.lectureservice.teacher.dto.response
+package com.hannah.education.lectureservice.domain.tag.dto
 
 import com.hannah.education.lectureservice.domain.lectureTag.LectureTag
 

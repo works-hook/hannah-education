@@ -1,0 +1,6 @@
+
+### 가장 많이 수강한 강의
+GET http://localhost:8080/lecture-student/most-taken
+
+### 가장 많이 좋아요한 강의
+GET http://localhost:8080/lecture-student/most-like

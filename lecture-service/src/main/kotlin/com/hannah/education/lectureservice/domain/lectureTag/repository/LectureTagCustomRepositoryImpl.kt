@@ -2,7 +2,7 @@ package com.hannah.education.lectureservice.domain.lectureTag.repository
 
 import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.lectureTag.LectureTag
-import com.hannah.education.lectureservice.lecture.domain.QLectureTag.lectureTag
+import com.hannah.education.lectureservice.domain.lectureTag.QLectureTag.lectureTag
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository

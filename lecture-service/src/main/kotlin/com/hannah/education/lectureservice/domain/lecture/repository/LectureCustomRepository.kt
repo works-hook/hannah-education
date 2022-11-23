@@ -8,4 +8,8 @@ interface LectureCustomRepository {
 
     fun findLectureId(lectureId: Long): Lecture?
 
+    fun findMostTakenLectures(): List<Lecture>
+
+    fun findMostLikeLectures(): List<Lecture>
+
 }
