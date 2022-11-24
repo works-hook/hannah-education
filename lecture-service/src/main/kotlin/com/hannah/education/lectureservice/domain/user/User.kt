@@ -1,4 +1,4 @@
-package com.hannah.education.lectureservice.user.domain
+package com.hannah.education.lectureservice.domain.user
 
 import com.hannah.education.lectureservice.util.domain.BaseEntity
 import javax.persistence.Entity

@@ -3,7 +3,7 @@ package com.hannah.education.lectureservice.domain.lecture.repository
 import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.lecture.QLecture.lecture
 import com.hannah.education.lectureservice.domain.lectureLike.QLectureLike.lectureLike
-import com.hannah.education.lectureservice.user.domain.QUser.user
+import com.hannah.education.lectureservice.domain.user.QUser.user
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository
@@ -13,11 +13,11 @@ class LectureCustomRepositoryImpl(
     private val queryFactory: JPAQueryFactory
 ): LectureCustomRepository {
 
-    override fun findLectureAll(id: Long): List<Lecture> {
+    override fun findAllByTeacher(teacherId: Long): List<Lecture> {
         return queryFactory
             .selectFrom(lecture)
             .where(
-                eqUserId(id),
+                eqUserId(teacherId),
                 notDelete()
             ).fetch()
     }
@@ -46,6 +46,16 @@ class LectureCustomRepositoryImpl(
             )
             .groupBy(lecture.id)
             .orderBy(lectureLike.count().desc())
+            .fetch()
+    }
+
+    override fun findAllByStudent(): List<Lecture> {
+        return queryFactory
+            .selectFrom(lecture)
+            .where(
+                notDelete()
+            )
+            .orderBy(lecture.createdDate.desc())
             .fetch()
     }
 

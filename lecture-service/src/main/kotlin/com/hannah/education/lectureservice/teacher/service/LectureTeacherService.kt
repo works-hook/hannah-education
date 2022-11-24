@@ -10,7 +10,7 @@ import com.hannah.education.lectureservice.teacher.dto.response.LectureListRespo
 import com.hannah.education.lectureservice.teacher.dto.response.LectureOneResponse
 import com.hannah.education.lectureservice.teacher.dto.response.toListResponse
 import com.hannah.education.lectureservice.teacher.dto.response.toOneResponse
-import com.hannah.education.lectureservice.user.repository.UserRepository
+import com.hannah.education.lectureservice.domain.user.repository.UserRepository
 import com.hannah.education.lectureservice.util.code.ErrorCode
 import com.hannah.education.lectureservice.util.exception.BusinessException
 import org.springframework.stereotype.Service
@@ -64,7 +64,7 @@ class LectureTeacherService(
             ?: throw BusinessException(ErrorCode.NOT_EXIST_MEMBER)
 
         return lectureRepository
-            .findLectureAll(findUser.id)
+            .findAllByTeacher(findUser.id)
             .map { it.toListResponse() }
             .toList()
     }

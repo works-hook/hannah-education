@@ -1,18 +1,18 @@
-package com.hannah.education.lectureservice.student.dto.response
+package com.hannah.education.lectureservice.domain.lecture.dto
 
 import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.lectureTag.LectureTag
 import com.hannah.education.lectureservice.domain.tag.dto.LectureTagResponse
 import com.hannah.education.lectureservice.domain.tag.dto.toResponse
 
-data class MostLectureResponse(
+data class LectureResponse(
     val lectureId: Long? = null,
     val title: String,
     val thumbnailImgUrl: String,
     val tags: List<LectureTagResponse>,
 )
 
-fun Lecture.toMostLectureResponse(lectureTags: List<LectureTag>): MostLectureResponse = MostLectureResponse(
+fun Lecture.toLectureResponse(lectureTags: List<LectureTag>): LectureResponse = LectureResponse(
     lectureId = this.id,
     title = this.title,
     thumbnailImgUrl = this.thumbnailImgUrl,

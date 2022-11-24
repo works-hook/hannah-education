@@ -1,7 +1,7 @@
 package com.hannah.education.lectureservice.teacher.dto.request
 
 import com.hannah.education.lectureservice.domain.lecture.Lecture
-import com.hannah.education.lectureservice.user.domain.User
+import com.hannah.education.lectureservice.domain.user.User
 import java.time.LocalDate
 
 data class LectureCreateRequest(

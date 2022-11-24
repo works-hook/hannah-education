@@ -1,7 +1,7 @@
-package com.hannah.education.lectureservice.user.repository
+package com.hannah.education.lectureservice.domain.user.repository
 
-import com.hannah.education.lectureservice.user.domain.QUser.user
-import com.hannah.education.lectureservice.user.domain.User
+import com.hannah.education.lectureservice.domain.user.QUser.user
+import com.hannah.education.lectureservice.domain.user.User
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Repository

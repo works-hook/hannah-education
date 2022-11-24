@@ -1,7 +1,7 @@
 package com.hannah.education.lectureservice.domain.lecture
 
 import com.hannah.education.lectureservice.teacher.dto.request.LectureModifyRequest
-import com.hannah.education.lectureservice.user.domain.User
+import com.hannah.education.lectureservice.domain.user.User
 import com.hannah.education.lectureservice.util.domain.BaseEntity
 import java.time.LocalDate
 import javax.persistence.*
@@ -15,7 +15,7 @@ class Lecture(
     var startDate: LocalDate,
     var endDate: LocalDate,
     var thumbnailImgUrl: String,
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     val user: User,
 ): BaseEntity() {
 
