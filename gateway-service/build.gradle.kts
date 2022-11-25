@@ -61,3 +61,15 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.bootBuildImage {
+    imageName = "coals0329" + "/${project.name}"
+    isPublish = true
+    docker {
+        publishRegistry {
+            username = "coals0329"
+            password = ""
+        }
+    }
+}
+
