@@ -9,4 +9,7 @@ enum class SuccessCode(
 
     ALL_LECTURE("10010", "강의 리스트입니다."),
     ONE_LECTURE("10011", "강의 상세입니다."),
+
+    ALL_TAGS("10100", "태그 리스트입니다."),
+    RANDOM_TAGS("10101", "랜덤 태그 리스트입니다."),
 }
