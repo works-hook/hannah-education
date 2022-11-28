@@ -14,9 +14,3 @@ fun LectureTag.toResponse(): LectureTagResponse = LectureTagResponse(
     name = this.tag.name,
     color = this.tag.color,
 )
-
-fun Tag.toResponse(): LectureTagResponse = LectureTagResponse(
-    tagId = this.id,
-    name = this.name,
-    color = this.color,
-)

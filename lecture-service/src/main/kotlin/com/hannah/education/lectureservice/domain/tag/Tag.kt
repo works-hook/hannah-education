@@ -12,4 +12,5 @@ class Tag(
     val id: Long,
     val name: String,
     val color: String,
+    val imageUrl: String?,
 ): BaseEntity()

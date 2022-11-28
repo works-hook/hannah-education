@@ -1,6 +1,7 @@
 package com.hannah.education.lectureservice.tag.controller
 
 import com.hannah.education.lectureservice.domain.tag.dto.LectureTagResponse
+import com.hannah.education.lectureservice.domain.tag.dto.TagResponse
 import com.hannah.education.lectureservice.tag.service.TagService
 import com.hannah.education.lectureservice.util.ApiResponse.Success
 import com.hannah.education.lectureservice.util.code.SuccessCode
@@ -15,13 +16,13 @@ class TagController(
 ) {
 
     @GetMapping("/tags")
-    fun findAllTags(): Success<List<LectureTagResponse>> {
+    fun findAllTags(): Success<List<TagResponse>> {
         val result = tagService.findAllTags()
         return Success(result, SuccessCode.ALL_TAGS)
     }
 
-    @GetMapping("/tags/random")
-    fun findRandomTags(): Success<List<LectureTagResponse>> {
+    @GetMapping("/tags-random")
+    fun findRandomTags(): Success<List<TagResponse>> {
         val result = tagService.findRandomTags()
         return Success(result, SuccessCode.RANDOM_TAGS)
     }
