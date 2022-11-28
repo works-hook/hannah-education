@@ -30,16 +30,16 @@ class LectureTeacherController(
         return Success(result, SuccessCode.LECTURE_MODIFY)
     }
 
-    @GetMapping("/{lectureId}")
-    fun findOneLecture(@PathVariable lectureId: Long): Success<LectureOneResponse> {
-        val result = teacherService.findOneLecture(lectureId)
-        return Success(result, SuccessCode.ONE_LECTURE)
-    }
-
-    @GetMapping("/{userId}")
+    @GetMapping("/lecture/{userId}")
     fun findAllLecture(@PathVariable userId: Long): Success<List<LectureListResponse>> {
         val result = teacherService.findAllLecture(userId)
         return Success(result, SuccessCode.ALL_LECTURE)
+    }
+
+    @GetMapping("/student/{lectureId}")
+    fun findOneLecture(@PathVariable lectureId: Long): Success<LectureOneResponse> {
+        val result = teacherService.findOneLecture(lectureId)
+        return Success(result, SuccessCode.ONE_LECTURE)
     }
 
 }

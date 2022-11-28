@@ -27,10 +27,10 @@ Content-Type: application/json
 }
 
 ### 강의 전체 조회
-GET http://localhost:8080/lecture-teacher/management/3
+GET http://localhost:8080/lecture-teacher/lecture/3
 
 ### 강의 상세 조회
-GET http://localhost:8080/lecture-teacher/2
+GET http://localhost:8080/lecture-teacher/student/2
 
 
 
