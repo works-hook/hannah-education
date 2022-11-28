@@ -2,6 +2,7 @@ package com.hannah.education.lectureservice.domain.takingLecture
 
 import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.user.User
+import com.hannah.education.lectureservice.util.domain.BaseEntity
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
@@ -18,4 +19,4 @@ class TakingLecture(
 
     @OneToOne
     val lecture: Lecture,
-)
+): BaseEntity()

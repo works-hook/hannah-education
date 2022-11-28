@@ -3,6 +3,8 @@ package com.hannah.education.lectureservice.domain.lecture.repository
 import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.lecture.QLecture.lecture
 import com.hannah.education.lectureservice.domain.lectureLike.QLectureLike.lectureLike
+import com.hannah.education.lectureservice.domain.takingLecture.QTakingLecture
+import com.hannah.education.lectureservice.domain.takingLecture.QTakingLecture.takingLecture
 import com.hannah.education.lectureservice.domain.user.QUser.user
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -32,7 +34,16 @@ class LectureCustomRepositoryImpl(
     }
 
     override fun findMostTakenLectures(): List<Lecture> {
-        return listOf()
+        return queryFactory.selectFrom(lecture)
+            .join(takingLecture)
+            .on(takingLecture.lecture.eq(lecture))
+            .where(
+                notDelete(),
+                takingNotDelete()
+            )
+            .groupBy(lecture.id)
+            .orderBy(takingLecture.count().desc())
+            .fetch()
     }
 
     override fun findMostLikeLectures(): List<Lecture> {
@@ -73,6 +84,11 @@ class LectureCustomRepositoryImpl(
 
     private fun likeNotDelete(): BooleanExpression {
         return lectureLike.deletedDate.isNull
+    }
+
+    private fun takingNotDelete(): BooleanExpression? {
+        // return takingLecture.deleteDate.isNull
+        return null
     }
 
 }

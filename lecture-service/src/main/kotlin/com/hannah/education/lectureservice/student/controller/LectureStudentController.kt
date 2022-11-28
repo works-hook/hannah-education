@@ -1,25 +1,22 @@
 package com.hannah.education.lectureservice.student.controller
 
-import com.hannah.education.lectureservice.domain.lecture.Lecture
 import com.hannah.education.lectureservice.domain.lecture.dto.LectureResponse
 import com.hannah.education.lectureservice.student.dto.response.LectureDetailResponse
 import com.hannah.education.lectureservice.student.service.LectureStudentService
 import com.hannah.education.lectureservice.util.ApiResponse.Success
 import com.hannah.education.lectureservice.util.code.SuccessCode
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("lecture-student")
+@RequestMapping("/lecture-student")
 class LectureStudentController(
-    private val studentService: LectureStudentService
+    private val studentService: LectureStudentService,
 ) {
 
     @GetMapping("/most-taken")
-    fun mostTakenLectures(): List<Lecture> {
-        return studentService.mostTakenLectures()
+    fun mostTakenLectures(): Success<List<LectureResponse>> {
+        val result = studentService.mostTakenLectures()
+        return Success(result, SuccessCode.ALL_LECTURE)
     }
 
     @GetMapping("/most-like")
@@ -38,6 +35,18 @@ class LectureStudentController(
     fun findOneLecture(@PathVariable lectureId: Long): Success<LectureDetailResponse> {
         val result = studentService.findOneLecture(lectureId)
         return Success(result, SuccessCode.ONE_LECTURE)
+    }
+
+    @PostMapping("/take/{lectureId}/{userId}")
+    fun takeLecture(@PathVariable lectureId: Long, @PathVariable userId: Long): Success<String> {
+        studentService.takeLecture(lectureId, userId)
+        return Success(SuccessCode.TAKING_LECTURE)
+    }
+
+    @PostMapping("/like/{lectureId}/{userId}")
+    fun likeLecture(@PathVariable lectureId: Long, @PathVariable userId: Long): Success<String> {
+        studentService.likeLecture(lectureId, userId)
+        return Success(SuccessCode.LIKE_LECTURE)
     }
 
 }
