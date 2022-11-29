@@ -30,6 +30,12 @@ class LectureTeacherController(
         return Success(result, SuccessCode.LECTURE_MODIFY)
     }
 
+    @DeleteMapping("/{lectureId}")
+    fun deleteLecture(@PathVariable lectureId: Long): Success<String> {
+        teacherService.deleteLecture(lectureId)
+        return Success(SuccessCode.LECTURE_DELETE)
+    }
+
     @GetMapping("/lecture/{userId}")
     fun findAllLecture(@PathVariable userId: Long): Success<List<LectureListResponse>> {
         val result = teacherService.findAllLecture(userId)

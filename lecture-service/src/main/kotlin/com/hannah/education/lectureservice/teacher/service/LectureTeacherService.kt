@@ -6,11 +6,11 @@ import com.hannah.education.lectureservice.domain.lectureTag.repository.LectureT
 import com.hannah.education.lectureservice.domain.tag.repository.TagRepository
 import com.hannah.education.lectureservice.teacher.dto.request.LectureCreateRequest
 import com.hannah.education.lectureservice.teacher.dto.request.LectureModifyRequest
+import com.hannah.education.lectureservice.domain.user.repository.UserRepository
 import com.hannah.education.lectureservice.teacher.dto.response.LectureListResponse
 import com.hannah.education.lectureservice.teacher.dto.response.LectureOneResponse
 import com.hannah.education.lectureservice.teacher.dto.response.toListResponse
 import com.hannah.education.lectureservice.teacher.dto.response.toOneResponse
-import com.hannah.education.lectureservice.domain.user.repository.UserRepository
 import com.hannah.education.lectureservice.util.code.ErrorCode
 import com.hannah.education.lectureservice.util.exception.BusinessException
 import org.springframework.stereotype.Service
@@ -49,6 +49,13 @@ class LectureTeacherService(
         lectureTagRepository.saveAll(lectureTags)
 
         return findLecture.toOneResponse(lectureTags)
+    }
+
+    @Transactional
+    fun deleteLecture(lectureId: Long) {
+        val findLecture = lectureRepository.findLectureId(lectureId)
+            ?: throw BusinessException(ErrorCode.NOT_EXIST_LECTURE)
+        findLecture.delete()
     }
 
     fun findOneLecture(lectureId: Long): LectureOneResponse {
