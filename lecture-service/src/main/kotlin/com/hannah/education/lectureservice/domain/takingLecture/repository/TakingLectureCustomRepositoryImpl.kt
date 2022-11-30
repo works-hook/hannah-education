@@ -3,6 +3,7 @@ package com.hannah.education.lectureservice.domain.takingLecture.repository
 import com.hannah.education.lectureservice.domain.lectureTag.QLectureTag.lectureTag
 import com.hannah.education.lectureservice.domain.tag.QTag.tag
 import com.hannah.education.lectureservice.domain.takingLecture.QTakingLecture.takingLecture
+import com.hannah.education.lectureservice.domain.takingLecture.TakingLecture
 import com.hannah.education.lectureservice.domain.user.User
 import com.hannah.education.lectureservice.student.dto.response.TagsByUserResponse
 import com.querydsl.core.types.ConstructorExpression
@@ -16,7 +17,7 @@ class TakingLectureCustomRepositoryImpl(
     private val queryFactory: JPAQueryFactory,
 ): TakingLectureCustomRepository {
 
-    override fun findTakingLectureByUser(user: User): List<TagsByUserResponse> {
+    override fun findTakingLectureTagsByUser(user: User): List<TagsByUserResponse> {
         return queryFactory
             .select(tagsByUserResponse())
             .from(takingLecture)
@@ -30,6 +31,16 @@ class TakingLectureCustomRepositoryImpl(
             )
             .groupBy(tag.id)
             .orderBy(tag.id.count().desc())
+            .fetch()
+    }
+
+    override fun findTakingLectureByUser(user: User): List<TakingLecture> {
+        return queryFactory
+            .selectFrom(takingLecture)
+            .where(
+                eqUser(user),
+                notDelete()
+            )
             .fetch()
     }
 

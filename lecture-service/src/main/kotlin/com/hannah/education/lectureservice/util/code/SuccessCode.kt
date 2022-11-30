@@ -15,9 +15,10 @@ enum class SuccessCode(
     RANDOM_TAGS("10101", "랜덤 태그 리스트입니다."),
 
     TAKING_LECTURE("11000", "수강 신청이 정상 처리 되었습니다."),
-    LIKE_LECTURE("11001", "강의에 좋아요를 눌렀습니다."),
-    LIKE_LECTURE_LIST("11002", "좋아요한 강의 리스트입니다."),
-    TAKING_LECTURE_TAG("11003", "수강한 태그 리스트입니다."),
+    TAKING_LECTURE_LIST("11001", "수강중인 강의 리스트입니다."),
+    LIKE_LECTURE("11002", "강의에 좋아요를 눌렀습니다."),
+    LIKE_LECTURE_LIST("11003", "좋아요한 강의 리스트입니다."),
+    TAKING_LECTURE_TAG("11004", "수강한 태그 리스트입니다."),
 
     ALL_NOTICE("20001", "강의 공지사항입니다."),
     NOTICE_CREATE("20002", "공지사항이 등록되었습니다."),

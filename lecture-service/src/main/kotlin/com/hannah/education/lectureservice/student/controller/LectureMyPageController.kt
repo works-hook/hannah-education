@@ -3,6 +3,7 @@ package com.hannah.education.lectureservice.student.controller
 import com.hannah.education.lectureservice.domain.lecture.dto.LectureResponse
 import com.hannah.education.lectureservice.student.dto.response.TagsByUserResponse
 import com.hannah.education.lectureservice.student.service.LectureMyPageService
+import com.hannah.education.lectureservice.teacher.dto.response.TakingLectureResponse
 import com.hannah.education.lectureservice.util.ApiResponse.Success
 import com.hannah.education.lectureservice.util.code.SuccessCode
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,6 +27,12 @@ class LectureMyPageController(
     fun findTagsByUser(@PathVariable userId: Long): Success<List<TagsByUserResponse>> {
         val result = myPageService.findTagsByUser(userId)
         return Success(result, SuccessCode.TAKING_LECTURE_TAG)
+    }
+
+    @GetMapping("/taking/{userId}")
+    fun findTakingLectures(@PathVariable userId: Long): Success<List<TakingLectureResponse>> {
+        val result = myPageService.findTakingLecture(userId)
+        return Success(result, SuccessCode.TAKING_LECTURE_LIST)
     }
 
 
