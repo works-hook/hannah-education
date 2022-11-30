@@ -1,11 +1,11 @@
 package com.hannah.education.userservice.user.service
 
-import com.hannah.education.userservice.user.domain.UserType
+import com.hannah.education.userservice.domain.user.UserType
 import com.hannah.education.userservice.user.dto.request.UserCreateRequest
 import com.hannah.education.userservice.user.dto.request.UserDuplicateRequest
 import com.hannah.education.userservice.user.dto.request.UserLoginRequest
 import com.hannah.education.userservice.user.dto.response.UserCreateResponse
-import com.hannah.education.userservice.user.repository.UserRepository
+import com.hannah.education.userservice.domain.user.repository.UserRepository
 import com.hannah.education.userservice.util.code.ErrorCode
 import com.hannah.education.userservice.util.exception.BusinessException
 import io.kotest.assertions.throwables.shouldThrowMessage

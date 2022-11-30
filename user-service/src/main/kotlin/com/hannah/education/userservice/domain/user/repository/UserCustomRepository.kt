@@ -1,6 +1,6 @@
-package com.hannah.education.userservice.user.repository
+package com.hannah.education.userservice.domain.user.repository
 
-import com.hannah.education.userservice.user.domain.User
+import com.hannah.education.userservice.domain.user.User
 
 interface UserCustomRepository {
 
@@ -9,5 +9,7 @@ interface UserCustomRepository {
     fun findUserById(id: Long): User?
 
     fun findByAccount(account: String): User?
+
+    fun findTeachers(): List<User>
 
 }

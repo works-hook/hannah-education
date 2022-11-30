@@ -5,7 +5,7 @@ import com.hannah.education.userservice.student.dto.response.StudentModifyRespon
 import com.hannah.education.userservice.student.dto.response.StudentOneResponse
 import com.hannah.education.userservice.student.dto.response.toStudentModifyResponse
 import com.hannah.education.userservice.student.dto.response.toStudentOneResponse
-import com.hannah.education.userservice.user.repository.UserRepository
+import com.hannah.education.userservice.domain.user.repository.UserRepository
 import com.hannah.education.userservice.util.code.ErrorCode
 import com.hannah.education.userservice.util.exception.BusinessException
 import org.springframework.stereotype.Service

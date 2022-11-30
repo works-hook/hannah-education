@@ -1,6 +1,6 @@
 package com.hannah.education.userservice.user.dto.response
 
-import com.hannah.education.userservice.user.domain.User
+import com.hannah.education.userservice.domain.user.User
 
 data class UserCreateResponse(
     val id: Long?,

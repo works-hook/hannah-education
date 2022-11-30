@@ -1,6 +1,6 @@
 package com.hannah.education.userservice.student.dto.response
 
-import com.hannah.education.userservice.user.domain.User
+import com.hannah.education.userservice.domain.user.User
 import java.time.LocalDate
 
 data class StudentModifyResponse(

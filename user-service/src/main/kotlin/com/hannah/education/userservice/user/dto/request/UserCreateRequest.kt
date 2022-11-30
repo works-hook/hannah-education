@@ -1,7 +1,7 @@
 package com.hannah.education.userservice.user.dto.request
 
-import com.hannah.education.userservice.user.domain.UserType
-import com.hannah.education.userservice.user.domain.User
+import com.hannah.education.userservice.domain.user.UserType
+import com.hannah.education.userservice.domain.user.User
 
 data class UserCreateRequest(
     val account: String,
