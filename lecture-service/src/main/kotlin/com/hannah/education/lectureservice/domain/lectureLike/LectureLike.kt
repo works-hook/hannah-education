@@ -10,7 +10,8 @@ class LectureLike(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY) val lecture: Lecture,
+    @ManyToOne(fetch = FetchType.LAZY)
+    val lecture: Lecture,
 
     @OneToOne
     val user: User,

@@ -13,6 +13,6 @@ class LectureTag(
     @ManyToOne(fetch = FetchType.LAZY)
     val lecture: Lecture,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     val tag: Tag,
 ):BaseEntity()

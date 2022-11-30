@@ -10,7 +10,7 @@ class LectureNotice(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     val lecture: Lecture,
 
     var title: String,
